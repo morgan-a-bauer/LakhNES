@@ -19,8 +19,7 @@ from utils.data_parallel import BalancedDataParallel
 parser = argparse.ArgumentParser(description='PyTorch Transformer Language Model')
 
 # MB: Changed path for data
-data_path = os.path.join(os.path.expanduser('~'), 'Documents', 'music_datasets', 'outNES')
-parser.add_argument('--data', type=str, default=data_path,
+parser.add_argument('--data', type=str, default='/Users/morganbauer/Documents/accompaniment_generation_dataset_stuff/outNES',
                     help='location of the data corpus')
 
 #MB: Changed dataset type
