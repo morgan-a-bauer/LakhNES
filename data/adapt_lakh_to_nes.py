@@ -247,25 +247,25 @@ def emit_nesmdb_midi_examples(
     out_fp = os.path.join(output_dir, out_fp)
     midi.write(out_fp)
 
+import glob
+import shutil
+import multiprocessing
 
-if __name__ == '__main__':
-  import glob
-  import shutil
-  import multiprocessing
+import numpy as np
+import pretty_midi
+from tqdm import tqdm
 
-  import numpy as np
-  import pretty_midi
-  from tqdm import tqdm
+midi_fps = glob.glob(os.path.join('/Users/morganbauer/Documents/accompaniment_generation_dataset_stuff/lmd_w_melody', '*.mid'))
+out_dir = '/Users/morganbauer/Documents/accompaniment_generation_dataset_stuff/outNES'
 
-  midi_fps = glob.glob('./lakh/lmd_full/*/*.mid*')
-  out_dir = './out'
-
-  if os.path.isdir(out_dir):
+if os.path.isdir(out_dir):
     shutil.rmtree(out_dir)
-  os.makedirs(out_dir)
+os.makedirs(out_dir)
 
-  def _task(x):
+def _task(x):
     emit_nesmdb_midi_examples(x, out_dir)
 
-  with multiprocessing.Pool(8) as p:
+if __name__ == '__main__':
+
+  with multiprocessing.Pool(18) as p:
     r = list(tqdm(p.imap(_task, midi_fps), total=len(midi_fps)))

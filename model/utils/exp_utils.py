@@ -30,6 +30,7 @@ def create_exp_dir(dir_path, scripts_to_save=None, debug=False):
         if not os.path.exists(script_path):
             os.makedirs(script_path)
         for script in scripts_to_save:
+            script = os.path.join('/Users/morganbauer/Documents/GitHub/LakhNES/model', script)
             dst_file = os.path.join(dir_path, 'scripts', os.path.basename(script))
             shutil.copyfile(script, dst_file)
 
